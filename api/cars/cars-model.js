@@ -8,4 +8,15 @@ module.exports = {
   getCarById(id) {
     return db("cars").where("id", id);
   },
+
+  insertCar(car) {
+    return db("cars")
+      .insert(car)
+      .then((ids) => {
+        return db("cars").where("id", ids[0]);
+      });
+    // .then((ids) => {
+    //   return db("cars").where({ id: ids[0] });
+    // });
+  },
 };

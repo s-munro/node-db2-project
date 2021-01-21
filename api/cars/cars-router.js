@@ -24,4 +24,14 @@ router.get("/:id", (req, res) => {
     });
 });
 
+router.post("/", (req, res) => {
+  Cars.insertCar(req.body)
+    .then((car) => {
+      res.status(200).json(car);
+    })
+    .catch((err) => {
+      res.status(500).json({ error: err.message });
+    });
+});
+
 module.exports = router;
